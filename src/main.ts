@@ -10,7 +10,7 @@ async function main() {
         const imageTag = getInput("image-tag");
         const prefix = getInput("prefix");
 
-        const { user, password } = await getEcrCredentials();
+        const { user, password } = await getECRCredentials();
         execFileSync("docker", ["login", "--username", user, "--password-stdin", repositoryUrl], { input: password });
 
         const tags = imageTag.split(IMAGE_TAG_SPLIT_REGEX).filter(Boolean);
@@ -29,7 +29,7 @@ async function main() {
     }
 }
 
-async function getEcrCredentials() {
+async function getECRCredentials() {
     const ecr = new ECRClient({});
     const getAuthorizationTokenCommand = new GetAuthorizationTokenCommand({});
     const response = await ecr.send(getAuthorizationTokenCommand)
