@@ -1,5 +1,5 @@
 {
-  "name": "ecr-push-action",
+  "name": "ecr-cache-push-action",
   "version": "1.0.2",
   "author": "Stuart Kennedy",
   "main": "lib/main.js",

@@ -1,5 +1,5 @@
-name: "ECR push"
-description: "Push image tags to a designated ECR repository."
+name: "ECR cache push"
+description: "Push image tags to a designated ECR repository so they can be pulled in another job."
 inputs:
   repository-url:
     description: "The URL of an ECR repository."
