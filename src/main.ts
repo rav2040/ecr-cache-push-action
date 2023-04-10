@@ -8,7 +8,6 @@ async function main() {
     try {
         const repositoryUrl = getInput("repository-url");
         const imageTag = getInput("image-tag");
-        const prefix = getInput("prefix");
 
         const { user, password } = await getECRCredentials();
         execFileSync("docker", ["login", "--username", user, "--password-stdin", repositoryUrl], { input: password });
@@ -17,7 +16,7 @@ async function main() {
         const uniqueTags = Array.from(new Set(tags));
 
         uniqueTags.forEach((tag: string) => {
-            const remoteTag = encodeURIComponent([prefix, tag].filter(Boolean).join("-"));
+            const remoteTag = Buffer.from(tag).toString("base64url");
             const remoteImageName = `${repositoryUrl}:${remoteTag}`;
             execFileSync("docker", ["tag", tag, remoteImageName], { stdio: "inherit" });
             execFileSync("docker", ["push", remoteImageName], { stdio: "inherit" });

@@ -7,9 +7,6 @@ inputs:
   image-tag:
     description: "An image tag or list of image tags."
     required: true
-  prefix:
-    description: "Prefixed to all image tags."
-    required: false
 runs:
   using: "node16"
   main: "lib/main.js"
