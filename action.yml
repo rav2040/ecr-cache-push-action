@@ -1,0 +1,15 @@
+name: "ECR push"
+description: "Push image tags to a designated ECR repository."
+inputs:
+  repository-url:
+    description: "The URL of an ECR repository."
+    required: true
+  image-tag:
+    description: "An image tag or list of image tags."
+    required: true
+  prefix:
+    description: "Prefixed to all image tags."
+    required: false
+runs:
+  using: "node16"
+  main: "lib/main.js"
